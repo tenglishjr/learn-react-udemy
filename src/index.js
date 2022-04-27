@@ -1,44 +1,49 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CommentDetail from "./components/CommentDetail";
-import faker from "@faker-js/faker";
-import ApprovalCard from "./components/ApprovalCard";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import SeasonDisplay from "./components/SeasonDisplay";
+import Spinner from "./components/Spinner";
 
-const App = () => {
-    return (
-        <div className='ui container comments'>
-            <ApprovalCard>
-                <div>
-                    <h4>WARNING!</h4>
-                    Are you sure you want to do this?
-                </div>
-            </ApprovalCard>
-            <ApprovalCard>
-                <CommentDetail
-                    author={faker.name.firstName()}
-                    timeAgo='Today at 5:00PM'
-                    content={faker.lorem.sentence()}
-                />
-            </ApprovalCard>
-            <ApprovalCard>
-                <CommentDetail
-                    author={faker.name.firstName()}
-                    timeAgo='Today at 5:00PM'
-                    content={faker.lorem.sentence()}
-                />
-            </ApprovalCard>
-            <ApprovalCard>
-                <CommentDetail
-                    author={faker.name.firstName()}
-                    timeAgo='Today at 5:00PM'
-                    content={faker.lorem.sentence()}
-                />
-            </ApprovalCard>
-        </div>
+class App extends React.Component {
+  state = {
+    lat: null,
+    long: null,
+    errorMessage: "",
+  };
+
+  componentDidMount() {
+    console.log("My component was rendered to the screen");
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => this.setState({ lat: position.coords.latitude }),
+      (err) => this.setState({ errorMessage: err.message })
     );
-};
+  }
 
-ReactDOM.render(
-    <App/>,
-    document.querySelector('#root')
-);
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("My component was just updated -- it rerendered!");
+  }
+
+  renderContent = () => {
+    if (this.state.errorMessage && !this.state.lat) {
+      return <div>Error: {this.state.errorMessage}</div>;
+    }
+
+    if (!this.state.errorMessage && this.state.lat) {
+      return <SeasonDisplay lat={this.state.lat} />;
+    }
+
+    if (!this.state.errorMessage && !this.state.lat) {
+      return <Spinner message="Please accept location request..." />;
+    }
+  };
+
+  render() {
+    return <div>{this.renderContent()}</div>;
+  }
+}
+
+// ReactDOM.render(
+//     <App/>,
+//     document.querySelector('#root')
+// );
+
+ReactDOM.createRoot(document.querySelector("#root")).render(<App />);
