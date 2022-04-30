@@ -17,7 +17,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "prettier --write \"{,!(node_modules)/**/}*.js\" && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false --passWithNoTests",
     "eject": "react-scripts eject",
@@ -42,10 +42,11 @@
     ]
   },
   "devDependencies": {
+    "axios": "^0.27.2",
     "eslint-config-prettier": "^8.5.0",
+    "husky": "^7.0.0",
     "lint-staged": "^12.4.1",
-    "prettier": "^2.6.2",
-    "husky": "^7.0.0"
+    "prettier": "^2.6.2"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

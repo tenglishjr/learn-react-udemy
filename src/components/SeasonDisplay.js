@@ -1,25 +1,25 @@
-import React from "react";
-import "../styling/SeasonDisplay.css";
+import React from 'react';
+import '../styling/SeasonDisplay.css';
 
 const seasonConfig = {
     summer: {
         text: "Let's hit the beach!",
-        iconName: "sun",
+        iconName: 'sun',
     },
     winter: {
         text: "Brr it's cold!",
-        iconName: "snowflake",
+        iconName: 'snowflake',
     },
 };
 
 const getHemisphere = (lat) => {
-    return lat > 0 ? "northern" : "southern";
+    return lat > 0 ? 'northern' : 'southern';
 };
 
 const getSeason = (lat, month) => {
     if (month > 2 && month < 9)
-        return getHemisphere(lat) === "northern" ? "summer" : "winter";
-    else return getHemisphere(lat) === "northern" ? "winter" : "summer";
+        return getHemisphere(lat) === 'northern' ? 'summer' : 'winter';
+    else return getHemisphere(lat) === 'northern' ? 'winter' : 'summer';
 };
 
 const SeasonDisplay = (props) => {

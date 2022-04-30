@@ -1,22 +1,22 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const Search = () => {
-    const [term, setTerm] = useState("programming");
+    const [term, setTerm] = useState('programming');
     const [results, setResults] = useState([]);
 
     useEffect(() => {
         const search = async () => {
             const { data } = await axios.get(
-                "https://en.wikipedia.org/w/api.php",
+                'https://en.wikipedia.org/w/api.php',
                 {
                     params: {
-                        action: "query",
-                        list: "search",
-                        format: "json",
-                        origin: "*",
-                        srsearch: term
-                    }
+                        action: 'query',
+                        list: 'search',
+                        format: 'json',
+                        origin: '*',
+                        srsearch: term,
+                    },
                 }
             );
 
@@ -36,7 +36,6 @@ const Search = () => {
                 clearTimeout(timeoutId);
             };
         }
-
     }, [term, results.length]);
 
     // useEffect(() => {

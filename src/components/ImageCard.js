@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class ImageCard extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class ImageCard extends React.Component {
     }
 
     componentDidMount() {
-        this.imageRef.current.addEventListener("load", this.setSpans);
+        this.imageRef.current.addEventListener('load', this.setSpans);
     }
 
     setSpans = () => {

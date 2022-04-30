@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const Accordion = (props) => {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -8,7 +8,7 @@ const Accordion = (props) => {
     };
 
     const renderedItems = props.items.map((item, index) => {
-        const active = index === activeIndex ? "active" : "";
+        const active = index === activeIndex ? 'active' : '';
 
         return (
             <React.Fragment key={item.title}>

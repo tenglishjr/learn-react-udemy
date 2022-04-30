@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 class SearchBar extends React.Component {
     state = {
-        term: "",
+        term: '',
     };
 
     onFormSubmit = (event) => {
