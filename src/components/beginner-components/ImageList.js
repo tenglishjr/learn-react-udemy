@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styling/ImageList.css';
+import '../../styling/ImageList.css';
 import ImageCard from './ImageCard';
 
 const ImageList = props => {

@@ -1,11 +1,11 @@
-import React from 'react';
 import faker from '@faker-js/faker';
+import React from 'react';
 
 const CommentDetail = props => {
   return (
     <div className='comment'>
       <a
-        href='/'
+        href='/Users/tenglish/Documents/Codebase/learn-react-udemy/public'
         className='avatar'
       >
         <img
@@ -15,7 +15,7 @@ const CommentDetail = props => {
       </a>
       <div className='content'>
         <a
-          href='/'
+          href='/Users/tenglish/Documents/Codebase/learn-react-udemy/public'
           className='author'
         >
           {props.author}

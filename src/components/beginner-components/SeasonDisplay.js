@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styling/SeasonDisplay.css';
+import '../../styling/SeasonDisplay.css';
 
 const seasonConfig = {
   summer: {
@@ -17,9 +17,11 @@ const getHemisphere = lat => {
 };
 
 const getSeason = (lat, month) => {
-  if (month > 2 && month < 9)
+  if (month > 2 && month < 9) {
     return getHemisphere(lat) === 'northern' ? 'summer' : 'winter';
-  else return getHemisphere(lat) === 'northern' ? 'winter' : 'summer';
+  } else {
+    return getHemisphere(lat) === 'northern' ? 'winter' : 'summer';
+  }
 };
 
 const SeasonDisplay = props => {
