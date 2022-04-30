@@ -1,29 +1,26 @@
 import React from "react";
-import unsplash from "../api/unsplash";
-import SearchBar from "./SearchBar";
-import ImageList from "./ImageList";
+import Search from "../components/Search";
 
-class App extends React.Component {
-  state = {
-    images: [],
-  };
+const items = [
+    {
+        title: "What is React?",
+        content: "React is a front end Javascript framework"
+    },
+    {
+        title: "Why is React?",
+        content: "Because it is."
+    },
+    {
+        title: "How is React?",
+        content: "Nice."
+    }
+];
 
-  onSearchSubmit = async (term) => {
-    const response = await unsplash.get("/search/photos", {
-      params: { query: term },
-    });
-
-    this.setState({ images: response.data.results });
-  };
-
-  render() {
+export default () => {
     return (
-      <div className="ui container" style={{ marginTop: "10px" }}>
-        <SearchBar onSubmit={this.onSearchSubmit} />
-        <ImageList images={this.state.images} />
-      </div>
+        <div>
+            {/*<Accordion items={items} />*/}
+            <Search />
+        </div>
     );
-  }
-}
-
-export default App;
+};
