@@ -1,37 +1,35 @@
-import React, { useState } from 'react';
-import Route from '../components/router/Route';
-import items from '../constants/items';
-import languages from '../constants/languages';
-import options from '../constants/options';
-import Accordion from './accordion/Accordion';
-import Dropdown from './dropdown/Dropdown';
-import Header from './navigation/Header';
-import Search from './search/Search';
-import Translate from './translate/Translate';
+import React, { useEffect, useState } from 'react';
+import useVideos from '../hooks/useVideos';
+import SearchBar from './SearchBar';
+import VideoDetail from './VideoDetail';
+import VideoList from './VideoList';
 
-export default () => {
-  const [selected, setSelected] = useState(options[0]);
+const App = () => {
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [videos, search] = useVideos('buildings');
+
+  useEffect(() => {
+    setSelectedVideo(videos[0]);
+  }, [videos]);
 
   return (
-    <div>
-      <Header />
-      <Route path='/'>
-        <Accordion items={items} />
-      </Route>
-      <Route path='/list'>
-        <Search />
-      </Route>
-      <Route path='/dropdown'>
-        <Dropdown
-          label='Select A Color'
-          options={options}
-          selected={selected}
-          onSelectedChange={setSelected}
-        />
-      </Route>
-      <Route path='/translate'>
-        <Translate options={languages} />
-      </Route>
+    <div className='ui container'>
+      <SearchBar onFormSubmit={search} />
+      <div className='ui grid'>
+        <div className='ui row'>
+          <div className='eleven wide column'>
+            <VideoDetail video={selectedVideo} />
+          </div>
+          <div className='five wide column'>
+            <VideoList
+              onVideoSelect={setSelectedVideo}
+              videos={videos}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
+
+export default App;
