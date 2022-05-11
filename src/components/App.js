@@ -23,7 +23,7 @@ export default () => {
       </Route>
       <Route path='/dropdown'>
         <Dropdown
-          label='Select A Color'
+          label='Select a Color'
           options={options}
           selected={selected}
           onSelectedChange={setSelected}
